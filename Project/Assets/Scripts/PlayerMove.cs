@@ -38,7 +38,7 @@ public class PlayerMove : MonoBehaviour
         Vector3 rightMovement = transform.right * horizInput;
 
         // clamp so diagonal movement can't be faster
-        characterController.SimpleMove(Vector3.ClampMagnatude(forwardMovement + rightMovement, 1) * moveSpeed);
+        characterController.SimpleMove(Vector3.ClampMagnitude(forwardMovement + rightMovement, 1) * moveSpeed);
 
         JumpInput();
     }
