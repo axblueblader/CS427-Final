@@ -6,9 +6,11 @@ public class ChangeMatOnStep : MonoBehaviour
 {
 
     [SerializeField] private Material stepOnMat;
+    [SerializeField] private Material normalMat;
     // Start is called before the first frame update
     void Start()
     {
+        gameObject.GetComponent<MeshRenderer>().material = normalMat;
     }
 
     // Update is called once per frame
@@ -16,8 +18,13 @@ public class ChangeMatOnStep : MonoBehaviour
     {
 
     }
-    private void OnTriggerEnter(Collider other)
+
+    private void OnCollisionEnter(Collision other)
     {
-        gameObject.GetComponent<MeshRenderer>().material = stepOnMat;
+        Debug.Log("collision: " + other);
+        if (other.gameObject.CompareTag("Player"))
+        {
+            gameObject.GetComponent<MeshRenderer>().material = stepOnMat;
+        }
     }
 }
