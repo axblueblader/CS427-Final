@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class PickUp : MonoBehaviour
 {
     [SerializeField] private Transform pickUpDest;
@@ -29,6 +28,7 @@ public class PickUp : MonoBehaviour
         {
             if (!handBusy)
             {
+                // Picking up logic
                 if (targetObj != null)
                 {
                     targetObj.GetComponent<Rigidbody>().useGravity = false;
@@ -37,6 +37,11 @@ public class PickUp : MonoBehaviour
                     targetObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                     targetObj.transform.position = pickUpDest.transform.position;
                     targetObj.transform.parent = pickUpDest.transform;
+                    SwitcherObj switcherObjScript = targetObj.GetComponent<SwitcherObj>();
+                    if (switcherObjScript != null)
+                    {
+                        switcherObjScript.isOn = true;
+                    }
                     pickedUpObj = targetObj;
                     // Debug.Log("pickedUp && !handBusy: " + pickedUpObj.GetInstanceID());
                     handBusy = true;
@@ -44,6 +49,7 @@ public class PickUp : MonoBehaviour
             }
             else
             {
+                // Dropping down logic
                 if (pickedUpObj != null)
                 {
                     // Debug.Log("pickedUp && handBusy: " + pickedUpObj.GetInstanceID());
@@ -51,6 +57,11 @@ public class PickUp : MonoBehaviour
                     // pickedUpObj.GetComponent<Rigidbody>().freezeRotation = false;
                     // pickedUpObj.GetComponent<Rigidbody>().freezePosition = false;
                     pickedUpObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                    SwitcherObj switcherObjScript = pickedUpObj.GetComponent<SwitcherObj>();
+                    if (switcherObjScript != null)
+                    {
+                        switcherObjScript.isOn = false;
+                    }
                     pickedUpObj.transform.parent = null;
                     handBusy = false;
                     pickedUpObj = null;
@@ -65,7 +76,15 @@ public class PickUp : MonoBehaviour
         {
             targetObj = other.gameObject;
             GameObject middleDot = GameObject.Find("MiddleDot");
-            middleDot.GetComponent<RectTransform>().sizeDelta = new Vector2(canPickUpWidth, canPickUpHeight);
+            if (!handBusy)
+            {
+                middleDot.GetComponent<RectTransform>().sizeDelta = new Vector2(canPickUpWidth, canPickUpHeight);
+            }
+            else
+            {
+                middleDot.GetComponent<RectTransform>().sizeDelta = new Vector2(normalWidth, normalHeight);
+            }
+
         }
     }
 
