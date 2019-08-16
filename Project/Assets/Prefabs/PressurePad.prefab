@@ -24,8 +24,13 @@ PrefabInstance:
     - target: {fileID: 2604121355366465848, guid: 956d0b5631b8b4ce1b1dd7e2111a694e,
         type: 3}
       propertyPath: m_Name
-      value: PressurePad Variant
+      value: PressurePad
       objectReference: {fileID: 0}
+    - target: {fileID: 2604121355366465854, guid: 956d0b5631b8b4ce1b1dd7e2111a694e,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: fb5ddc125e5f05b42a1269e0a08850eb, type: 2}
     - target: {fileID: 2604121355366465852, guid: 956d0b5631b8b4ce1b1dd7e2111a694e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -81,11 +86,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2604121355366465854, guid: 956d0b5631b8b4ce1b1dd7e2111a694e,
+    - target: {fileID: 2604121355366465852, guid: 956d0b5631b8b4ce1b1dd7e2111a694e,
         type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: fb5ddc125e5f05b42a1269e0a08850eb, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4503147680598487788, guid: 956d0b5631b8b4ce1b1dd7e2111a694e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 956d0b5631b8b4ce1b1dd7e2111a694e, type: 3}

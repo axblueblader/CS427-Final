@@ -12,7 +12,7 @@ public class PickUp : MonoBehaviour
     [SerializeField] private float normalHeight;
     [SerializeField] private float normalWidth;
 
-    [SerializeField] private float smooth = 0.125f;
+    [SerializeField] private float minHandDistance = 1.3f;
     private bool handBusy;
 
     private GameObject pickedUpObj;
@@ -26,6 +26,37 @@ public class PickUp : MonoBehaviour
     }
     private void Update()
     {
+        if (PlayerStates.isDead)
+        {
+            return;
+        }
+        RaycastHit hit;
+        GameObject middleDot = GameObject.Find("MiddleDot");
+
+        targetObj = null;
+        middleDot.GetComponent<RectTransform>().sizeDelta = new Vector2(normalWidth, normalHeight);
+        if (Physics.Raycast(transform.position, transform.forward, out hit))
+        {
+            Collider other = hit.collider;
+
+            // Debug.Log("Distance: " + Vector3.Distance(pickUpDest.position, other.transform.position));
+            if (other && Vector3.Distance(pickUpDest.position, other.transform.position) <= minHandDistance)
+            {
+                if (other.gameObject.CompareTag("Collectable"))
+                {
+                    targetObj = other.gameObject;
+                    if (!handBusy)
+                    {
+                        middleDot.GetComponent<RectTransform>().sizeDelta = new Vector2(canPickUpWidth, canPickUpHeight);
+                    }
+                    else
+                    {
+                        middleDot.GetComponent<RectTransform>().sizeDelta = new Vector2(normalWidth, normalHeight);
+                    }
+
+                }
+            }
+        }
         if (Input.GetKeyDown(pickUpKey))
         {
             if (!handBusy)
@@ -36,7 +67,8 @@ public class PickUp : MonoBehaviour
                     targetObj.GetComponent<Rigidbody>().useGravity = false;
                     // targetObj.GetComponent<Rigidbody>().freezeRotation = true;
                     // targetObj.GetComponent<Rigidbody>().freezePosition = true;
-                    targetObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+                    targetObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll
+                            | RigidbodyConstraints.FreezePositionY;
                     targetObj.transform.position = pickUpDest.transform.position;
                     targetObj.transform.parent = pickUpDest.transform;
                     SwitcherObj switcherObjScript = targetObj.GetComponent<SwitcherObj>();
@@ -79,33 +111,6 @@ public class PickUp : MonoBehaviour
             //     pickedUpObj.transform.position,
             //     pickUpDest.transform.position,
             //     Time.deltaTime * smooth);
-        }
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Collectable"))
-        {
-            targetObj = other.gameObject;
-            GameObject middleDot = GameObject.Find("MiddleDot");
-            if (!handBusy)
-            {
-                middleDot.GetComponent<RectTransform>().sizeDelta = new Vector2(canPickUpWidth, canPickUpHeight);
-            }
-            else
-            {
-                middleDot.GetComponent<RectTransform>().sizeDelta = new Vector2(normalWidth, normalHeight);
-            }
-
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.CompareTag("Collectable"))
-        {
-            targetObj = null;
-            GameObject middleDot = GameObject.Find("MiddleDot");
-            middleDot.GetComponent<RectTransform>().sizeDelta = new Vector2(normalWidth, normalHeight);
         }
     }
 }
