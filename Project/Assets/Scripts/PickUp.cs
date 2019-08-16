@@ -11,6 +11,8 @@ public class PickUp : MonoBehaviour
     [SerializeField] private float canPickUpWidth;
     [SerializeField] private float normalHeight;
     [SerializeField] private float normalWidth;
+
+    [SerializeField] private float smooth = 0.125f;
     private bool handBusy;
 
     private GameObject pickedUpObj;
@@ -34,7 +36,7 @@ public class PickUp : MonoBehaviour
                     targetObj.GetComponent<Rigidbody>().useGravity = false;
                     // targetObj.GetComponent<Rigidbody>().freezeRotation = true;
                     // targetObj.GetComponent<Rigidbody>().freezePosition = true;
-                    targetObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+                    targetObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
                     targetObj.transform.position = pickUpDest.transform.position;
                     targetObj.transform.parent = pickUpDest.transform;
                     SwitcherObj switcherObjScript = targetObj.GetComponent<SwitcherObj>();
@@ -68,7 +70,16 @@ public class PickUp : MonoBehaviour
                 }
             }
         }
-
+        if (handBusy && pickedUpObj != null)
+        {
+            // Vector3 distance = pickUpDest.transform.position - pickedUpObj.transform.position;
+            // Transform parent = pickUpDest.transform.parent;
+            // Debug.Log("Distance: " + Vector3.Distance(distance, Vector3.zero));
+            // pickedUpObj.transform.position = Vector3.Lerp(
+            //     pickedUpObj.transform.position,
+            //     pickUpDest.transform.position,
+            //     Time.deltaTime * smooth);
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
