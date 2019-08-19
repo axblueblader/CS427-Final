@@ -19,6 +19,10 @@ public class ActivateTarget : MonoBehaviour
     public GameObject target;
     private void OnTriggerEnter(Collider other)
     {
-        target.SetActive(true);
+        if (other.gameObject.CompareTag("Player"))
+        {
+
+            target.SetActive(true);
+        }
     }
 }

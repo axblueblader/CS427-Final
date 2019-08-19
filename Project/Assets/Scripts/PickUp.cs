@@ -26,7 +26,7 @@ public class PickUp : MonoBehaviour
     }
     private void Update()
     {
-        if (PlayerStates.isDead)
+        if (GameObject.Find("PlayerBody").GetComponent<PlayerStates>().isDead)
         {
             return;
         }

@@ -5,7 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class RespawnScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        GameObject respawnLoc = GameObject.Find(GlobalRespawnVal.respawnLocName);
+
+        GameObject player = GameObject.Find("PlayerBody");
+
+        Debug.Log("resLoc: " + respawnLoc.transform.position + "resName: " + GlobalRespawnVal.respawnLocName);
+        player.GetComponent<CharacterController>().enabled = false;
+        player.transform.position = respawnLoc.transform.position;
+        player.GetComponent<CharacterController>().enabled = true;
+    }
     void Start()
     {
 
@@ -16,7 +26,7 @@ public class RespawnScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            SceneManager.LoadScene(GlobalRespawnVal.levelName);
         }
     }
 }

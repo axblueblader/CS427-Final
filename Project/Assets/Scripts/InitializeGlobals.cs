@@ -10,6 +10,5 @@ public class InitializeGlobals : MonoBehaviour
     {
         string oldColor = ColorSwitchObjs.SwitchColor(initColor);
         Debug.Log("initOldColor: " + oldColor);
-        PlayerStates.isDead = false;
     }
 }

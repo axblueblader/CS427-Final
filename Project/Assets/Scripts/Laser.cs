@@ -23,7 +23,7 @@ public class Laser : MonoBehaviour
             {
                 if (hit.collider.gameObject.CompareTag("Player"))
                 {
-                    PlayerStates.killPlayer();
+                    hit.collider.gameObject.GetComponent<PlayerStates>().killPlayer();
                 };
 
                 lr.SetPosition(1, hit.point);

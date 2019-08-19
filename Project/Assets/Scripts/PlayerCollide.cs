@@ -21,7 +21,7 @@ public class PlayerCollide : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Fatal"))
         {
-            PlayerStates.killPlayer();
+            GetComponent<PlayerStates>().killPlayer();
             Debug.Log("Dead");
         }
     }
