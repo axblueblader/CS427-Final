@@ -12,6 +12,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private AnimationCurve jumpFallOff;
     [SerializeField] private float jumpMultiplier;
     [SerializeField] private KeyCode jumpKey;
+    [SerializeField] private AudioSource jumpLandAudio;
     private bool isJumping;
     private void Awake()
     {
@@ -72,5 +73,6 @@ public class PlayerMove : MonoBehaviour
         // This will be done once the jumping finished
         isJumping = false;
         characterController.slopeLimit = 45f;
+        jumpLandAudio.PlayOneShot(jumpLandAudio.clip, 0.7f);
     }
 }

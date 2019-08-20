@@ -13,6 +13,9 @@ public class PickUp : MonoBehaviour
     [SerializeField] private float normalWidth;
 
     [SerializeField] private float minHandDistance = 1.3f;
+
+    [SerializeField] private AudioSource pickUpAudio;
+    [SerializeField] private AudioSource dropDownAudio;
     private bool handBusy;
 
     private GameObject pickedUpObj;
@@ -79,6 +82,7 @@ public class PickUp : MonoBehaviour
                     pickedUpObj = targetObj;
                     // Debug.Log("pickedUp && !handBusy: " + pickedUpObj.GetInstanceID());
                     handBusy = true;
+                    pickUpAudio.PlayOneShot(pickUpAudio.clip, 0.7f);
                 }
             }
             else
@@ -99,6 +103,7 @@ public class PickUp : MonoBehaviour
                     pickedUpObj.transform.parent = null;
                     handBusy = false;
                     pickedUpObj = null;
+                    dropDownAudio.PlayOneShot(dropDownAudio.clip, 0.7f);
                 }
             }
         }
