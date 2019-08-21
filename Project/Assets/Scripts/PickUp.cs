@@ -33,6 +33,11 @@ public class PickUp : MonoBehaviour
         {
             return;
         }
+
+        if (GameObject.Find("GlobalScripts").GetComponent<PauseGame>().isPaused())
+        {
+            return;
+        }
         RaycastHit hit;
         GameObject middleDot = GameObject.Find("MiddleDot");
 
