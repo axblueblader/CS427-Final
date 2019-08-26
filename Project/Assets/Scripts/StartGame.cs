@@ -19,6 +19,7 @@ public class StartGame : MonoBehaviour
 
     public void startGame()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Level1");
     }
 }

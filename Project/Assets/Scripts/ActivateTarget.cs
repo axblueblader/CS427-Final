@@ -21,7 +21,7 @@ public class ActivateTarget : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-
+            Debug.Log("Player entered a trigger");
             target.SetActive(true);
         }
     }
