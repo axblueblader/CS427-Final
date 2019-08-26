@@ -33,7 +33,7 @@ ExportedObj/
 sysinfo.txt
 
 # Project version
-Project/ProjectVersion.txt
+Project/ProjectSettings/ProjectVersion.txt
 
 # Builds
 *.apk
