@@ -1,9 +1,9 @@
 # Color Switcher
 
 ## Group information: 
-Class 16CTT
-Lê Trung Kiên - 1651021
-Nguyễn Quốc Việt - 1651069
+- Class 16CTT
+- Lê Trung Kiên - 1651021
+- Nguyễn Quốc Việt - 1651069
 
 ## Introduction:
 In our game we feature a 1st -person experience as players are up to solve our quizzes. Each level will have a different layout and a different combination of traps and reward. Our game required you to be patient, sharp and reflexive.
