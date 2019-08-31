@@ -30,3 +30,4 @@ In our game we feature a 1st -person experience as players are up to solve our q
 - Github: https://github.com/axblueblader/CS427-Final
 - Trailer + Demo: https://youtu.be/120ItWH4B9M
 - Windows distribution: https://drive.google.com/file/d/1K2Y8LDrrZ958EcnAVHf0IQGwMsMJr3fK/view?usp=sharing
+- Report: https://docs.google.com/document/d/1LBL0ZmNQwH4ePN6w1AaNfeozps2_Yhokr5DjEv4CLso/edit?usp=sharing
